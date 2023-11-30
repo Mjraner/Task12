@@ -1,12 +1,12 @@
-// Define Shape interface
-interface Shape {
+1.
+public interface Shape {
     double calculateArea();
     double calculatePerimeter();
 }
 
-// Create abstract class AbstractShape implementing Shape interface
-abstract class AbstractShape implements Shape {
-    // Common attributes for shapes
+2.
+public abstract class AbstractShape implements Shape {
+    // Common attributes
     String color;
     double length;
     double width;
@@ -18,74 +18,61 @@ abstract class AbstractShape implements Shape {
         this.width = width;
     }
 
-    // Implementations for calculateArea and calculatePerimeter methods
-    @Override
-    public double calculateArea() {
-        return 0; // Implementation will vary based on shape
-    }
+    // Abstract methods to be implemented by subclasses
+    public abstract double calculateArea();
 
-    @Override
-    public double calculatePerimeter() {
-        return 0; // Implementation will vary based on shape
-    }
+    public abstract double calculatePerimeter();
 }
 
-// Concrete class Circle extending AbstractShape
-class Circle extends AbstractShape {
-    // Additional attribute for circle
+3.
+public class Circle extends AbstractShape {
     double radius;
 
-    // Constructor for Circle
+    // Constructor
     public Circle(String color, double radius) {
-        super(color, 0, 0); // Setting length and width as 0 for circle
+        super(color, 0, 0);  // For simplicity, setting length and width to 0
         this.radius = radius;
     }
 
-    // Override calculateArea for circle
+    // Implementations for calculateArea and calculatePerimeter
     @Override
     public double calculateArea() {
         return Math.PI * radius * radius;
     }
 
-    // Override calculatePerimeter for circle
     @Override
     public double calculatePerimeter() {
         return 2 * Math.PI * radius;
     }
 }
 
-// Concrete class Rectangle extending AbstractShape
-class Rectangle extends AbstractShape {
-    // Constructor for Rectangle
+public class Rectangle extends AbstractShape {
+    // Constructor
     public Rectangle(String color, double length, double width) {
         super(color, length, width);
     }
 
-    // Override calculateArea for rectangle
+    // Implementations for calculateArea and calculatePerimeter
     @Override
     public double calculateArea() {
         return length * width;
     }
 
-    // Override calculatePerimeter for rectangle
     @Override
     public double calculatePerimeter() {
         return 2 * (length + width);
     }
 }
 
-// Main class
+4.
 public class Main {
     public static void main(String[] args) {
         // Create instances of Circle and Rectangle
-        Circle circle = new Circle("Red", 5.0);
-        Rectangle rectangle = new Rectangle("Blue", 4.0, 6.0);
+        Circle circle = new Circle("Red", 5);
+        Rectangle rectangle = new Rectangle("Blue", 4, 6);
 
         // Display their areas and perimeters
-        System.out.println("Circle Area: " + circle.calculateArea());
-        System.out.println("Circle Perimeter: " + circle.calculatePerimeter());
-
-        System.out.println("Rectangle Area: " + rectangle.calculateArea());
-        System.out.println("Rectangle Perimeter: " + rectangle.calculatePerimeter());
+        System.out.println("Circle - Area: " + circle.calculateArea() + ", Perimeter: " + circle.calculatePerimeter());
+        System.out.println("Rectangle - Area: " + rectangle.calculateArea() + ", Perimeter: " + rectangle.calculatePerimeter());
     }
 }
